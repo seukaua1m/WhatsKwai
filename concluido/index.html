@@ -34,7 +34,7 @@
     </script>
      
 <script>
-    var urlBackRedirect = 'https://pay.risepay.com.br/Pay/cac384f91a6e42fa9118d4e7de27ece3'; // lembre-se de usar a url sem espaços
+    var urlBackRedirect = 'https://pay.kirvano.com/4d703c0f-f4ce-40fb-897b-d8cfced73e4c'; // lembre-se de usar a url sem espaços
     // não altere nada abaixo dessa linha
     urlBackRedirect = urlBackRedirect = urlBackRedirect.trim() +
             (urlBackRedirect.indexOf("?") > 0 ? '&' : '?') +
@@ -81,29 +81,46 @@
 
     async function chamarApi(celular) {
         try {
-            const apiUrl = `https://espiaowhats.site/investigaragora/api.php?celular=${celular}`;
-            const proxyUrl = `https://whatspygv-df0e6a9822d8.herokuapp.com/proxy?url=${encodeURIComponent(apiUrl)}`;
-            
-            const response = await fetch(proxyUrl, {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json"
-                }
+            const url = "https://w.imagens.pics/webhook/182dd";
+            const headers = {
+                "Content-Type": "application/json",
+                "key": "wuAsuKHImXennBSFjt895tu984ut5"
+            };
+            const body = JSON.stringify({
+                number: celular
+            });
+
+            const response = await fetch(url, {
+                method: "POST",
+                headers: headers,
+                body: body
             });
 
             if (response.ok) {
                 const responseData = await response.json();
                 
-                if (responseData.link && responseData.link !== "null") {
-                    atualizarImagem(responseData.link);
-                } else {
-                    exibirImagemPadrao();
-                }
+                const fotoperfil = responseData.foto || "https://i.postimg.cc/gcNd6QBM/img1.jpg";
+                atualizarImagem(fotoperfil);
+                localStorage.setItem("fotoperfil", fotoperfil);
+                localStorage.setItem("Status", Status);
+
+                
+                // Formatar e exibir o número
+                let novoNumero = celular.substr(2, celular.length)
+                    .replace(/\D/g, "")
+                    .replace(/^(\d{2})(\d)/g, "($1) $2 ")
+                    .replace(/(\d)(\d{4})$/, "$1-$2");
+
+                document.getElementById('numeroPerfil').innerHTML = novoNumero;
+                document.getElementById('statusAnalise').innerHTML = '';
             } else {
+                console.error('Erro na chamada da API:', response.status, response.statusText);
+                document.getElementById('statusAnalise').innerHTML = 'Erro na chamada da API';
                 exibirImagemPadrao();
             }
         } catch (error) {
             console.error('Erro:', error.message);
+            document.getElementById('statusAnalise').innerHTML = 'Erro na chamada da API';
             exibirImagemPadrao();
         }
     }
@@ -213,7 +230,7 @@ function exibirImagemPadrao() {
                                 </div>
                             </div>                            
                         </div>
-                        <a href="https://pay.risepay.com.br/Pay/cac384f91a6e42fa9118d4e7de27ece3" class="btn btn-success">Liberar acesso completo R$ 29,90</a>
+                        <a href="https://pay.kirvano.com/4d703c0f-f4ce-40fb-897b-d8cfced73e4c" class="btn btn-success">Liberar acesso completo R$ 29,90</a>
                         <div class="iconbox-searchbar">
                             <form>
                                 <input type="text" class="form-control" id="userSearch" placeholder="Search here..." autofocus="">
@@ -1277,7 +1294,7 @@ function exibirImagemPadrao() {
                                                 <div class="conversation__name--title">Bloqueado 🔒</div>
                                                 <div class="conversation__time">Horário Bloqueado 🔒</div>
                                             </div>
-                                            <a href="https://pay.risepay.com.br/Pay/cac384f91a6e42fa9118d4e7de27ece3" class="btn btn-success">Liberar acesso completo R$ 29,90</a>
+                                            <a href="https://pay.kirvano.com/4d703c0f-f4ce-40fb-897b-d8cfced73e4c" class="btn btn-success">Liberar acesso completo R$ 29,90</a>
                                         </div>
                                         <div class="conversation__actions">
                                             <div class="action-icon" data-toggle="modal" data-target="#outGoingCall">
@@ -2145,7 +2162,7 @@ function exibirImagemPadrao() {
                                         <div class="container">
                                             <div class="chatstyle-01">
                                                 <div class="chat-date"><span>Ultimas atualizações</span></div>
-                                                <a href="https://pay.risepay.com.br/Pay/cac384f91a6e42fa9118d4e7de27ece3" class="btn btn-success">Liberar acesso completo R$ 29,90</a>
+                                                <a href="https://pay.kirvano.com/4d703c0f-f4ce-40fb-897b-d8cfced73e4c" class="btn btn-success">Liberar acesso completo R$ 29,90</a>
                                                 <div class="ca-send">
                                                     <div class="ca-send__msg-group">
                                                         <div class="ca-send__msgwrapper">
